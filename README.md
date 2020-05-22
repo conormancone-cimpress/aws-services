@@ -27,21 +27,50 @@
             {"type": "Accelerated", "description": "Includes support for GPUs and FGPAs"}
 
         ],
-        "launch templates": {
-        },
         "spot requests": {
         },
         "savings plans": {
         },
-        "reserved instances": {
-        },
-        "dedicated hosts": {
-        },
-        "scheduled instances": {
-        },
         "capacity reservations": {
         },
         "AMIs": {
+            "permissions": [
+                {
+                    "name": "Public",
+                    "description": "Available to anyone anywhere"
+                },
+                {
+                    "name": "Explicit",
+                    "description": "Specify allowed accounts",
+                },
+                {
+                    "name": "Implicit",
+                    "description": "In essence, me only",
+                }
+            ],
+            "storage": [
+                {
+                    "name": "EBS",
+                    "description": "Backed by EBS",
+                    "notes": "EBS is network backed, so lower performance but can persist longer than instance and can move from instance to instance"
+                },
+                {
+                    "name": "Instance Store",
+                    "description": Backed by an instance store volume",
+                    "notes": "instance-store is physically attached to the instance and cannot move or persist, but gets better performance.  Remember that instance-store backed instances cannot be stopped: they are either running or terminated"
+                }
+            ],
+            "virtualization_types": [
+                {
+                    "name": "Hardware Virtual Machine (HVM)",
+                    "description": "Supported by all instance types.  HVM provides 'closer' access to the underlying hardware, making it possible for the OS to take advantage of hardware-specific features.  This is required for use of GPUs and enhanced networking."
+                },
+                {
+                    "name": "Paravirtual",
+                    "description": "Can run on hosts that don't explicitly support virtualization, but doesn't have support for GPUs or enhanced networking.  PV used to have better performance than HVM, but this isn't true anymore."
+                }
+            ],
+
         },
         "bundle tasks": {
         },
@@ -52,8 +81,6 @@
         "ebs lifecycle manager": {
         },
         "security groups": {
-        },
-        "elastic ips": {
         },
         "placement groups": {
         },
@@ -161,10 +188,109 @@
         },
         "target groups": {
         },
-        "launch configurations": {
-        },
         "auto scaling groups": {
+            "lifecycle": [
+                {
+                    "name": "Hook: EC2 Instance Launching",
+                    "description": "If you attach an 'instance launching' hook then when an instance becomes 'Pending' your hook will execute and the instance will enter the 'Pending: wait' step until your hook finishes.  Then it will transition to 'Pending: proceed' and from there to 'In Service"
+                },
+                {
+                    "name": "Detaching",
+                    "description": "You can separate an instance from the ASG and 'spint it off' as an independent instance"
+                },
+                {
+                    "name": "Attaching",
+                    "description": "You can take an independent instance and attach it to the ASG so that it is managed as part of the ASG"
+                },
+                {
+                    "name": "Standby",
+                    "description": "Temporarily remove instances from service for debugging/etc purposes.  https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html"
+                }
+            ],
+            "configuration": {
+                "description": "Launch configuration or Launch template is required.  You can also specify an EC2 instance, but then AWS just converts that into a launch configuration to attach",
+                "types": [
+                    {
+                        "name": "Launch Configuration",
+                        "description": "Not editable, and only one launch configuration can be attached to an ASG at a time.  Has some limits, for instance cannot Spot and On Demand instances into the same ASG with a launch configuration."
+                    },
+                    {
+                        "name": "Launch Template",
+                        "description": "More flexible and generally recommended.  They can extend eachother and have multiple versions, allowing for more flexibility.  Also allows you to launch different instance types in the same ASG.  You can convert a Launch Configuration into a Launch template and update an ASG that uses a launch configuration to use a Launch template instead."
+                    }
+                ]
+            }
         },
+        "monitoring": [
+            {
+                "type": "Automated",
+                "options": [
+                    {
+                        "name": "System status checks",
+                        "description": "Checks on the underlying AWS infrastructure - with the exception of restarting or moving instances, only AWS can fix issues with these"
+                    },
+                    {
+                        "name": "Instance status checks",
+                        "description": "checks on (in essence) the os: memory usage, file system, network configuration, etc... if these fails then you screwed up your instance and need to fix it"
+                    },
+                    {
+                        "name": "CloudWatch alarms",
+                        "description": "Choose a metric to monitor with cloudwatch and trigger an action (notice to Amazon SNS topic or trigger EC2 Autoscaling policy).  Note that action is only taken as a result of a sustained change in the metric"
+                    },
+                    {
+                        "name": "CloudWatch Events",
+                        "description": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html"
+                    },
+                    {
+                        "name": "Cloud Watch Logs",
+                        "description": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/"
+                    },
+                    {
+                        "name": "Cloud Watch Agent",
+                        "description": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html"
+                    }
+                ]
+            },
+            {
+                "type": "Plan",
+                "description": "A good monitoring plan is critical.  It will let you address problems while still small.",
+                "questions" [
+                    "What are your goals for monitoring?",
+                    "What resources you will monitor?",
+                    "How often you will monitor these resources?",
+                    "What monitoring tools will you use?",
+                    "Who will perform the monitoring tasks?",
+                    "Who should be notified when something goes wrong?"
+                ]
+            },
+            {
+                "type": "Cloudwatch",
+                "description": "CloudWatch collects and processes raw data from EC2 to present readable and near-real-time metrics.  Data is recorded for 15 months.  Sends data to Cloudwatch every 15 minutes, and presents graphs from CloudWatch in EC2 console",
+                "options": [
+                    {
+                        "name": "Detailed Monitoring",
+                        "description": "Data is available in 1 minute periods at an additional charge"
+                    },
+                    {
+                        "name": "Aggregate across instances",
+                        "description": "For detailed monitoring only, you can show average/total metrics for a number of instances"
+                    },
+                    {
+                        "name": "Aggregate across autoscaling groups",
+                        "description": "You can show average/total metrics for instances in an ASG.  Not sure if detailed metrics are required"
+                    },
+                    {
+                        "name": "Aggregate across AMI",
+                        "description": "For detailed monitoring only, you can show average/total metrics for instances using a given AMI"
+                    },
+                    {
+                        "name": "Create Alarm",
+                        "description": "You can set an alarm to trigger depending on metrics.  The alarm can be sent to email addresses as well as an SNS topic.  It can also stop/start/restart instances"
+                    }
+                ]
+
+            }
+        ]
     },
 }
 ```
