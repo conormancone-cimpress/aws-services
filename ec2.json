@@ -51,7 +51,7 @@
                 },
                 {
                     "name": "Instance Store",
-                    "description": Backed by an instance store volume",
+                    "description": "Backed by an instance store volume",
                     "notes": "instance-store is physically attached to the instance and cannot move or persist, but gets better performance.  Remember that instance-store backed instances cannot be stopped: they are either running or terminated"
                 }
             ],

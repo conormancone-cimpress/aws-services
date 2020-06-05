@@ -1,0 +1,77 @@
+{
+    "cognito": {
+    },
+    "terms": [
+        {
+            "name": "Resources",
+            "description": "Things saved in IAM: users, groups, roles, policies, identity objects"
+        },
+        {
+            "name": "Identities",
+            "description": "Resources used to identify someone/something.  The doc says, The IAM resource objects that are used to identify and group. You can attach a policy to an IAM identity. These include users, groups, and roles."
+        },
+        {
+            "name": "Entities",
+            "description": "Resources used to authenticate: Users, federated users, assumed IAM roles"
+        },
+        {
+            "name": "Principal",
+            "description": "The actual person or thing making the request, which uses a root user, IAM user, or role to sign in and make requests."
+        },
+        {
+            "name": "Root User",
+            "description": "The user first created when making the account.  Should bascially never be used."
+        },
+        {
+            "name": "Federated User",
+            "description": "A user who is granted access to AWS via an external user management system (aka LDAP, Sign in with Google/Facebook/Amazon, etc...).  This way you don't have to create all your IAM users manually",
+            "also": "Federated users get permissions from roles"
+        },
+        {
+            "name": "Group",
+            "description": "Policies are attached to groups, and users can be attached to groups.  Users can be in more than one group"
+        },
+        {
+            "name": "Request",
+            "description": "When anyone tries to do anything they must send a request to AWS with auth details",
+            "requirements": [
+                "Actions or Operations to execute",
+                "Resources: The AWS resource to apply actions to",
+                "Principal: The person/application that used an entity to send the request.  Includes the policies associated with the entity",
+                "Environment data: IP Address, user agent, SSL status, time of day, etc...",
+                "Resource data: Additional data for the resource (DynamoDB Table name, EC2 instance tags, etc...)"
+            ]
+        },
+        {
+            "name": "Authentication",
+            "description": "A principal must be authenticated (signed in) to AWS to make requests"
+        },
+        {
+            "name": "Authorization",
+            "description": "Check for actual permission to execute the given request (root user pretty much always has authorization)",
+            "rules": [
+                "An explict deny overrides all else",
+                "Deny from Organizations SCP, IAM permissions boundary, or a session policy will deny the request",
+                "An explicit allow will allow the request",
+                "Otherwise requests are denied by default",
+            ]
+        },
+        {
+            "name": "Actions or Operations",
+            "description": "Authorization must include the action or operation being performed.  Operations are defined per-service and are things like `CreateUser`, `GetUser`, etc..."
+        },
+        {
+            "name": "Resources",
+            "description": "Authorization also checks the resource which includes things like a particular EC2 instance, S3 bucket, etc..."
+        },
+        {
+            "name": "ABAC",
+            "description": "Attribute Based Access Controls.  In short, add permissions based on attributes and then add those attributes to resources"
+        },
+        {
+            "name": "Role vs Resource Based Permissions",
+            "description": "For cross account purposes you can assign permissions to a resource granting cross account access to a principal.  The advantage of this (especially for users) is that the given principal can then access that resource without having to change access.  For instance if you used role-based access then a user may have to switch roles to access the cross account resource, so they can't simultaneously access resources in both accounts"
+        }
+    ],
+
+}
