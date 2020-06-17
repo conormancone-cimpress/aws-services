@@ -1,5 +1,79 @@
 {
     "cognito": {
+        "overview": "A login service.  This seems to have two main (practical) purposes.  One, it manages users and logins for apps and websites so you don't have to. Two, it helps manage access to AWS services without having to have an application to do it for them.",
+        "User Pools": {
+            "description": "A user directory!  Users can register/signin with email/pass, or use SSO from facebook/google/etc...  Includes top notch account protection.",
+            "features": [
+                {
+                    "name": "Hosted UI",
+                    "description": "Delivers a register/login/SSO page that users can use in your app or on the web"
+                },
+                {
+                    "name": "Lambda Triggers",
+                    "description": "Lots of lifecycle hooks where you can register a lambda to customize functionality",
+                    "examples": [
+                        "Deny logins",
+                        "Pre signup",
+                        "Post signup",
+                        "Customize messages",
+                        "etc"
+                    ]
+                },
+                {
+                    "name": "Amazon Pinpoint",
+                    "description": "Integrates with amazon pinpoint, whatever that is"
+                },
+                {
+                    "name": "user pool tokens",
+                    "description": "When a user registers, Amazon Cognito will share the user pool tokens with you, and those are what will be passed along by logged in users.  Therefore you can use these to identify users and limit access to your own resources (or whatever)"
+                }
+            ]
+        },
+        "Identity Pools": {
+            "description": "Grant AWS credentials to users in user pools so they can access AWS resources.  Access is granted to the identity pool, and a variety of kinds of users can be included in the identity pool",
+            "user sources": [
+                "Amazon Cognito User Pool",
+                "Users from external identity providers (Facebook, Google, SAML, etc...)",
+                "Users authenticated through your own process",
+                "Unauthenticated users"
+            ],
+            "identity types": [
+                "Authenticated",
+                "Unauthenticated"
+            ],
+            "Data sets": "Apparently there are data sets that can be set and synced per identity?"
+        },
+        "pricing": [
+            "Pay per MAU (monthly active user).  Any user who does anything in a given calendar month (register, login, etc...) qualifies as a MAU.",
+            "Different cost tiers for users who sign in directly and users via SSO/Federation",
+            "There is a permanent free tier",
+            "There are advanced features (includes auditing) which add additional costs, and are much more expensive than the base price (starts at $.05 per user)",
+            "There are additional costs for SMS sent for MFA",
+            "Additional pricing for Cognito Sync",
+            "For SAML/SSO/Federation users you get 50 free users and then $0.015 per additional user",
+            "For users who login directly the first 50,000 are free"
+        ],
+        "pricing_tiers_for_direct_login": [
+            {
+                "MAU_min": 50001,
+                "MAU_max": 100000,
+                "usd_per_MAU": 0.0055
+            },
+            {
+                "MAU_min": 100001,
+                "MAU_max": 1000000,
+                "usd_per_MAU": 0.0046
+            },
+            {
+                "MAU_min": 1000001,
+                "MAU_max": 10000000,
+                "usd_per_MAU": 0.00325
+            },
+            {
+                "MAU_min": 10000001,
+                "usd_per_MAU": 0.0025
+            }
+        ]
     },
     "terms": [
         {
