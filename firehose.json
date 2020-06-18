@@ -1,0 +1,28 @@
+{
+    "name": "Amazon Kinesis Firehose",
+    "description": "Amazon Kinesis Data Firehose is a fully managed service for delivering real-time streaming data to destinations such as Amazon Simple Storage Service (Amazon S3), Amazon Redshift, Amazon Elasticsearch Service (Amazon ES), and Splunk.",
+    "key concepts": [
+        {
+            "name": "delivery stream",
+            "description": "The base unit of kinesis firehose.  You send data to a delivery stream"
+        },
+        {
+            "name": "record",
+            "description": "The data sent to the stream.  It can be as large as 1000KB"
+        },
+        {
+            "name": "data producer",
+            "description": "The thing that sends data: a web server that sends logs, etc..."
+        },
+        {
+            "name": "buffer size",
+            "description": "Data is buffered in the stream before sending along.  Buffer sizes are in MB"
+        },
+        {
+            "name": "buffer interval",
+            "description": "Data is buffered in the stream before sending along.  Buffer intervals are in seconds"
+        }
+    ],
+    "destinations": [
+    ]
+}
