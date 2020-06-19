@@ -23,6 +23,55 @@
             "description": "Data is buffered in the stream before sending along.  Buffer intervals are in seconds"
         }
     ],
+    "sources": [
+        "Kinesis Data Streams",
+        "Kinesis Agent",
+        "AWS SDK",
+        "Cloudwatch Logs",
+        "Cloudwatch events",
+        "AWS IoT"
+    ],
     "destinations": [
-    ]
+        {
+            "name": "S3",
+            "description": "Data is delievered to the S3 bucket, transformations can be applied along the way, and it can also be copied to a backup bucket"
+        },
+        {
+            "name": "Redshift",
+            "description": "For Amazon Redshift the data is sent to S3 and then Redshift copies it into your redshift cluster"
+        },
+        {
+            "name": "ES (Elasticseach)",
+            "description": "Data is transferred to ES and optionally backed up to an S3 bucket"
+        },
+        {
+            "name": "Splunk",
+            "description": "Data is copied to Splunk and optionally backed up to an S3 bucket"
+        }
+    ],
+    "transformations": [
+        {
+            "name": "Lambda",
+            "description": "You can use Lambda to perform transformations on the data going through the Kinesis firehose"
+        },
+        {
+            "name": "Convert record format",
+            "description": "You can also convert the record format.  This converts the record from JSON to column-oriented formats that can be searched faster (https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html)"
+        }
+    ],
+    "pricing": {
+        "details": [
+            "GB is based on not data sent but record size * records sent.  Record sizes are rounded up to the nearest 5KB",
+            "Tiered pricing per GB/month",
+            "Additional $/GB for data format conversion (~$0.018/GB)",
+            "Additional $/GB for data processed to VPC (~$0.01/GB)",
+            "Additional $/hour for each AZ that data is sent to in a VPC (~$0.01/hour)"
+        ],
+        "us_east_n_virginia_tiers": [
+            "$0.029 First 500 GB/month",
+            "$0.025 Next 1.5TB/month",
+            "$0.02 Next 3PB/month",
+            "Quote Over 5PB/month"
+        ]
+    }
 }
