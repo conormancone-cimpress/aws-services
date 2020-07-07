@@ -1,0 +1,37 @@
+{
+    "Key Features": [
+        {
+            "name": "Centralized Management",
+            "description": "Make yourself the owner of any number of different accounts"
+        },
+        {
+            "name": "Consolidated Billing",
+            "description": "Duh.  Easily pay for all the accounts in one place"
+        },
+        {
+            "name": "Hierarchical Grouping/Organizational Units",
+            "description": "Put accounts in organizational units (OUs) to easily apply necessary rules, and then put those OUs in a heirarchy to pass rules from parents to children."
+        },
+        {
+            "name": "Implement further usage restrictions (Service Control Policies)",
+            "description": "Create a Service Control Policy to limit what accounts can do.  For instance, block AWS services that don't meet regulatory requirements, keep users out of billing, etc..."
+        },
+        {
+            "name": "Better Tagging",
+            "description": "You can create tag policies across your accounts to enforce things even as simple as case conventions."
+        },
+        {
+            "name": "IAM",
+            "description": "Override IAM policies to block more things"
+        },
+        {
+            "name": "Integration with other services",
+            "description": "Some services play nicely with AWS Organization and can be used to perform actions in your other accounts on your behalf"
+        },
+        {
+            "name": "Eventually consistent",
+            "description": "Immediately unimpressed"
+        }
+    ],
+    "pricing": "No additional charge",
+}

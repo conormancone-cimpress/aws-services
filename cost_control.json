@@ -1,10 +1,70 @@
 {
     "to_read": [
-        "https://aws.amazon.com/aws-cost-management/",
-        "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html",
-        "https://aws.amazon.com/aws-cost-management/aws-cost-categories/?track=costma",
-        "https://aws.amazon.com/organizations/?track=costma",
-        "https://aws.amazon.com/controltower/?track=costma",
-        "https://aws.amazon.com/aws-cost-management/aws-budgets/?track=costma"
-    ]
+        "https://aws.amazon.com/aws-cost-management/aws-budgets/?track=costma",
+        "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-what-is.html"
+    ],
+    "Cost Allocation Tags": [
+        "Enable cost allocation tags and then tag away!",
+        "The cost allocation report will then break down cost by tag and also for untagged resources so you can see what you are spending"
+    ],
+    "Cost Explorer": {
+        "description": "Some plots of cost usage",
+        "limits": [
+            "Free to use UI, $0.01 per paginated API request",
+            "Once you turn it on you can't turn it off",
+            "Up to 12 months of historical data, current month, and projections for 3 months",
+            "When first turned on it takes a day to get current usage, and a few more days for the rest",
+        ],
+        "Cost 'Types'": [
+            {
+                "name": "Unblended",
+                "description": "The costs on they day they are charged.  Things like reserved instances which charge an upfront cost may show as spikes on the first of the month."
+            },
+            {
+                "name": "Amortized",
+                "description": "Distributes one time charges across the month"
+            },
+            {
+                "name": "Blended",
+                "description": "Just ignore this, only useful in special circumstances that most never encounter."
+            }
+        ]
+    },
+    "Budgets": {
+        "description": "AWS Budgets information is updated up to three times a day. Budgets track your unblended costs, subscriptions, refunds, and RIs (Reserved Instance)",
+        "types": [
+            {
+                "name": "Cost",
+                "description": "Plan/track spending on a service"
+            },
+            {
+                "name": "Usage",
+                "description": "Plan/track spending on one or more services"
+            },
+            {
+                "name": "RI Utilization",
+                "description": "Define utilization thresholds for RIs and get alerts if it falls below"
+            },
+            {
+                "name": "RI Coverage",
+                "description": "Track fraction of instances that are covered by RI and get alert if it falls below defined thresholds"
+            },
+            {
+                "name": "Savings Plan Utilization",
+                "description": "Define utilization thresholds for savings plans and get alerts if it falls below"
+            },
+            {
+                "name": "Savings Plan Coverage",
+                "description": "Duh"
+            }
+        ],
+        "pricing": [
+            "First 62 budget days are free every month, so you can have 2 free budgets",
+            "Each additional budget day costs $0.02",
+            "Max 20,000 budgets per month"
+        ]
+    },
+    "Cost Categories": {
+        "description": "Organize costs with a rules engine approach.  Generate cost categories, make rules about how resources are divided into categories, and then categories show up in Cost Categories, AWS Budgets, and AWS CUR"
+    }
 }

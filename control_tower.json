@@ -1,0 +1,44 @@
+{
+    "docs": "https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html",
+    "Main Features": [
+        {
+            "name": "Landing Zone",
+            "description": "Container for everything?"
+        },
+        {
+            "name": "Guard Rail",
+            "description": "High level rules.  Two kinds: preventative and detective.  Three categories: mandatory, strongly recommended, elective"
+        },
+        {
+            "name": "Account Factory",
+            "description": "Build account templates to easily create new accounts with the proper configuration"
+        },
+        {
+            "name": "Dashboard",
+            "description": "Because of course!"
+        },
+    ],
+    "Guard Rails": {
+        "notes": [
+            "Applies to an entire OU",
+            "Expressed in plain language",
+            "Example: Disallow public read access to S3 buckets"
+        ],
+        "behaviors": [
+            {
+                "name": "Prevention",
+                "description": "Stops actions which would cause non-compliance with the guard rail",
+                "statuses": ["Enforced", "Not Enabled"],
+                "notes": [
+                    "Not available in all regions",
+                    "Implemented via SCPs (Service Control Policies)"
+                ],
+            },
+            {
+                "name": "Detection",
+                "description": "Alerts on policy violations",
+                "statuses": ["clear", "in violation", "not enabled"],
+            }
+        ],
+    }
+}
