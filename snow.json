@@ -1,0 +1,24 @@
+{
+    "scale": [
+        "tera", "peta", "exa",
+    ],
+    "snowcone": {
+    },
+    "snowball": {
+        "storage optimized": [
+            "40 vCPUs equivalent",
+            "80TB of storage + 1 TB, but S3 equivalent"
+        ],
+        "compute optimized": [
+            "52 vCPUs equivalent",
+            "optional GPU",
+            "80TB of storage"
+        ],
+    },
+    "snowmobile": [
+        "ridiculous",
+        "100PB",
+        "Very secure semi",
+        "$0.005/GB per month"
+    ]
+}

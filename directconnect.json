@@ -1,0 +1,56 @@
+{
+    "Overview": [
+        "AWS has a number of direct connect locations which basically have direct access to an AWS region",
+        "You connect to the direct connect location (these are large data centers, so you may have your own infrastructure there already",
+        "You then have, in essence, a direct connection to AWS.  This can give better and more consistent bandwidth",
+        "It's also cheaper because you have reduced network bandwidth fees from AWS",
+        "If you aren't at the direct connect location then you can work with a partner to build a connection, probably using your current internet connection"
+    ],
+    "Direct Connect Partners": [
+        "This is a bit unclear, but it seems like you will pretty much always use a direct connect partner",
+        "In essence, unless you already happen to have infrastructure in the direct connect datacenter, you'll need a partner to complete the connection"
+    ],
+    "Type of Links": {
+        "dedicated": {
+            "overview": [
+                "Phyiscal 1Gpbs or 10Gpbs link from AWS direct connect partner to AWS",
+                "Supports 50 private or public virtual interfaces, as well as 1 transit interface",
+                "Multiple dedicated connections can be combined via a Link Aggregation Group for even higher bandwidth",
+            ]
+        },
+        "hosted": {
+            "overview": [
+                "Shared connection.  Bandwidth options range from 50Mbps to 10Gbps",
+                "Controls are in place to make sure that others can't hog the bandwidth"
+            ]
+        },
+    },
+    "Link Aggregation Group (LAG)": [
+        "Combine any number of dedicated connections for higher total bandwidth",
+        "It will automatically load balance over the dedicated connections"
+    ],
+    "Interface Types": [
+        {
+            "Name": "Private",
+            "Description": "Connect to a VPC to access private infrastructure directly using private IP addresses"
+        },
+        {
+            "Name": "Public",
+            "Description": "Connect to public AWS infrastructure (S3, EC2, etc...) using public IP addresses"
+        },
+        {
+            "Name": "Transit",
+            "Description": "Access a transit gateway.  Not sure what for, but seems unlikely to matter currently"
+        },
+        {
+            "Name": "Hosted Virtual Interface",
+            "Description": "Allow another account access.  Complicated and generally avoided these days except for specific edge cases"
+        }
+    ],
+    "Direct Connect Gateway": [
+        "Let's you connect VPCs in different regions so you can access both from your Direct Connect Connection",
+        "A Virtual Private Gateway makes this happen",
+        "You can also allow cross-account access this way",
+        "Work with a transit gateway to connect multiple VPCs to eachother and your direct connect connection"
+    ]
+}

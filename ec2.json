@@ -191,7 +191,7 @@
                 },
                 {
                     "type": "Elastic",
-                    "description": "A 'standard" public IP address that can be moved from account to account",
+                    "description": "A 'standard' public IP address that can be moved from account to account",
                     "notes": [
                         "Can be moved around as needed",
                         "One IP per running instance is free",
@@ -308,7 +308,7 @@
                         "For TCP listeners assigns targets by round robin",
                         "For HTTP/S uses the 'Least Outstanding Requests'"
                     ],
-                    "Connection Multiplexing": True,
+                    "Connection Multiplexing": true,
                     "Frontend HTTP Support": ["0.9", "1.0", "1.1"],
                     "Backend HTTP Support": ["1.1"]
                 },
@@ -320,7 +320,7 @@
                         "Flow hash algorithm (see docs: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)",
                         "All packets for a single TCP connection are sent to the same target.  Different connections for different clients may go to different targets though"
                     ],
-                    "Connection Multiplexing": False,
+                    "Connection Multiplexing": false,
                 },
                 {
                     "name": "Application",
@@ -332,7 +332,7 @@
                         "Target groups can configure their own algorithm, but round robin is the default.",
                         "Note that a target can be in multiple target groups.  Routing is independent between target groups, so such a target may see extra load"
                     ],
-                    "Connection Multiplexing": True,
+                    "Connection Multiplexing": true,
                     "Frontend HTTP Support": ["0.9", "1.0", "1.1", "2", "Upgrade to websockets"],
                     "Backend HTTP Support": ["1.1"]
                 }
