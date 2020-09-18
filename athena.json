@@ -1,0 +1,41 @@
+{
+    "overview": [
+        "Pretend to have a database in S3!",
+        "Define the schema in your S3 bucket and point Athena to the bucket",
+        "Execute SQL-like queries",
+        "Serverless - pay only for queries"
+    ],
+    "pricing": [
+        "You can save from 30% to 90% on your per-query costs and get better performance by compressing, partitioning, and converting your data into columnar formats.",
+        "$5.00 per TB of data scanned per query",
+        "Columnar formats include Apache Parquet and Apache ORC"
+    ],
+    "tables and databases": [
+        "There aren't actually tables and databases.  Instead they are just metadata definitions that describe the underlying data",
+        "The metadata in the table tells Athena where the data is located in Amazon S3, and specifies the structure of the data, for example, column names, data types, and the name of the table.",
+        "Databases are a logical grouping of tables, and also hold only metadata and schema information for a dataset.",
+        "You have to create a table before you can use Athena",
+        "Query results are also stored in S3"
+    ],
+    "definitions": [
+        {
+            "name": "Data catalog or metastore",
+            "description": "A system for organizing metadata, i.e. descriptions of the tables and columns/types, etc..."
+        },
+        {
+            "name": "Dataset",
+            "description": "The actual data"
+        },
+        {
+            "name": "Datasource",
+            "description": "The dataset + data catalog, aka everything you need to use Athena"
+        },
+        {
+            "name": "Data source connector",
+            "description": "Used to get data out of non-S3 locations.  Basically just a special-purpose Lambda"
+        }
+    ],
+    "Amazon Athena Federated Query (Preview)": [
+        "You can also search data that isn't stored in S3: relational, non-relational, object, and custom data sources."
+    ]
+}

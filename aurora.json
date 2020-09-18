@@ -1,0 +1,33 @@
+{
+    "elevator pitch": "MySQL and PostgreSQL-compatible relational database built for the cloud",
+    "benefits": [
+        "storage autoscaling (up to 64TB)",
+        "attach up to 15 read replicas, including a load balanced read endpoint",
+        "serverless if you want it",
+        "parallel queries for higher performance",
+        "instance monitoring and repair",
+        "replicate across multiple AZs",
+        "Available via global database for cross-region support (https://aws.amazon.com/rds/aurora/global-database/)",
+        "Fault tolerant and self healing",
+        "Automatic, Continuous, Incremental Backups and Point-in-Time Restore",
+        "Database Snapshots",
+        "Backtrack - preconfigure and move database forward/backward in time"
+    ],
+    "s3": "you can load data from or send data to an S3 bucket",
+    "pricing": {
+        "instance": [
+            "priced per hour based on instance size, varies for MySQL vs PostgreSQL compatible",
+            "you can use reserved instance discounts",
+            "serverless databases are charged per ACU (Aurora Capacity Units) per hour (roughly 2GB memory + typical CPU+Network)",
+        ],
+        "storage": [
+            "$0.10 per GB-month",
+            "$0.20 per million I/O requests"
+        ],
+        "global": "$0.20 per million replicated write I/Os",
+        "backup storage": "$0.021 per GB-month",
+        "backtrack": "$0.012 per 1 million Change Records per hour",
+        "snapshot export": "$0.010 per GB for the snapshot size",
+        "data transfer to/from internet or separate AZ": "varies"
+    }
+}

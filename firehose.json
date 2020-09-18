@@ -56,7 +56,7 @@
         },
         {
             "name": "Convert record format",
-            "description": "You can also convert the record format.  This converts the record from JSON to column-oriented formats that can be searched faster (https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html)"
+            "description": "You can also convert the record format.  This converts the record from JSON to column-oriented formats (Apache Parquet and Apache ORC) that can be searched faster (https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html)"
         }
     ],
     "pricing": {

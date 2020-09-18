@@ -1,0 +1,12 @@
+{
+    "OLAP": {
+        "ref": "https://blog.treasuredata.com/blog/2016/02/10/whats-the-difference-between-aws-redshift-aurora/",
+        "description": "Redshift is a column-oriented database that performs column-level analytics much more efficiently"
+    },
+    "notes": [
+        "Redshift is an 'actual' database service.  You create a cluster, launch nodes, connect, make SQL-like queries",
+        "https://aws.amazon.com/redshift/resources/",
+        "https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html",
+        "https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html"
+    ]
+}
