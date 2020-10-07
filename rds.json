@@ -1,0 +1,82 @@
+{
+    "overview": [
+        "CPU, Storage, Memory, and iOPS are all separate so you can scale independently",
+        "RDS manages backups, patching, auto fail detection, recovery",
+        "No shell access and limited access to system tables and procedures",
+        "Configure automated backups or manually backup",
+        "Configure a secondary instance for rapid failover, also spin up read replicas"
+    ],
+    "Instance Types": [
+        {
+            "name": "db.m[13456]",
+            "description": "General purpose.  Number represents generation with increasing resources"
+        },
+        {
+            "name": "db.t[23]",
+            "description": "burstable"
+        },
+        {
+            "name": "db.z1d|db.x1e|db.x1|db.r[345]|db.m2",
+            "description": "Memory optimized"
+        },
+    ],
+    "Type/Engine Support": {
+        "description": "Arbitrary and complicated.  MySQL is well supported but most vary depending on engine version and instance type generation",
+    },
+    "Storage": {
+        "Caveats": [
+
+        ],
+        "Types": [
+            {
+                "name": "Magnetic",
+                "description": "See ec2.json[storage][EBS][types][4]"
+            },
+            {
+                "name": "General Purpose (SSD)",
+                "description": "See ec2.json[storage][EBS][types][0]"
+            },
+            {
+                "name": "Provisioned IOPS (PIOPS)",
+                "description": "See ec2.json[storage][EBS][types][1]"
+            }
+        ],
+        "IOPS": [
+            "When you create a DB instance, you specify the IOPS rate and the size of the volume",
+            "The ratio of IOPS to allocated storage (in GiB) must be at least 0.5",
+            "Maximum IOPS of 64,000 is guaranteed only on Nitro-based instances that are on the m5, r5, and z1d instance types",
+            "Other instance families guarantee performance up to 32,000 IOPS"
+        ]
+    },
+    "High Availability (Multi AZ)": {
+        "notes": [
+            "Option to set when creating, can also enable it when in use",
+            "If you enable it for a current DB, AWS RDS will take a snapshot, restore to secondary region, and then setup syncronous replication",
+            "No downtime but performance can be impacted",
+            "Failover times typically 60-120 seconds",
+            "The failover mechanism automatically changes the Domain Name System (DNS) record of the DB instance to point to the standby DB instance. As a result, you need to re-establish any existing connections to your DB instance.",
+            "In a Java virtual machine (JVM) environment, due to how the Java DNS caching mechanism works, you might need to reconfigure JVM settings (or set a low TTL)"
+        ],
+        "Causes Failover": [
+            "An Availability Zone outage",
+            "The primary DB instance fails",
+            "The DB instance's server type is changed",
+            "The operating system of the DB instance is undergoing software patching",
+            "A manual failover of the DB instance was initiated using Reboot with failover"
+        ],
+    },
+    "Engine Specific Docs": [
+        "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html",
+        "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html",
+        "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html",
+        "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Oracle.html",
+        "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html"
+    ],
+    "Billing": [
+        "DB Instance hours (per hour)",
+        "Storage (per GiB per month)",
+        "I/O requests (per 1 million per month)",
+        "Backup storage (per GiB per month)",
+        "Data transfer (per GB)"
+    ],
+}
