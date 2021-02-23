@@ -1,0 +1,20 @@
+{
+    "Athena": {
+        "Dataset": "The actual data",
+        "Data catalog/metastore": "The meta data: table names, column names/types",
+        "Data Source": "Dataset + data catalog",
+        "Data Source Connector": "Fetches data from non-S3 locations (via Lambda)"
+    },
+    "Aurora": [
+        "MySQL and Postgres compatible database replacement",
+        "Better scalability and cross-AZ availability",
+        "Can be deployed cross-region",
+        "Aailable via a Serverless model"
+    ],
+    "Control Tower": [
+        "Account Factory",
+        "Guard Rails (plain english guides) with Preventative and Detective types.",
+        "Three Categories: Mandatory, Strongly Recommended, Elective.",
+        "Preventive guides work via SCP (Service control policies)"
+    ]
+}
